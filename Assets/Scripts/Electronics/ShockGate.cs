@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shockGate : MonoBehaviour
+public class ShockGate : MonoBehaviour
 {
 
 	public bool working = true;

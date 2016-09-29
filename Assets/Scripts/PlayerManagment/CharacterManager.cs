@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class characterManager : MonoBehaviour
+public class CharacterManager : MonoBehaviour
 {
 
 	public bool active;

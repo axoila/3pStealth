@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class heatEmit : MonoBehaviour {
+public class HeatEmit : MonoBehaviour {
 	public float extentionTime;
 
 	public float minScale;

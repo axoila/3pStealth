@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerManager : MonoBehaviour {
+public class PlayerManager : MonoBehaviour {
 
 	public GameObject[] characters;
 	public CameraManager cam;
@@ -18,19 +18,19 @@ public class playerManager : MonoBehaviour {
 
 		//cycle through characters
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0 || Input.GetButtonDown("Next Character")) {
-			characters [activeCharacter].GetComponent<characterManager> ().deActivate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().deActivate ();
 			activeCharacter++;
 			if (activeCharacter >= characters.Length)
 				activeCharacter = 0;
-			characters [activeCharacter].GetComponent<characterManager> ().activate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().activate ();
 			cam.player = characters [activeCharacter].transform;
 		}
 		if (Input.GetAxis ("Mouse ScrollWheel") < 0) {
-			characters [activeCharacter].GetComponent<characterManager> ().deActivate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().deActivate ();
 			activeCharacter--;
 			if (activeCharacter < 0)
 				activeCharacter = characters.Length-1;
-			characters [activeCharacter].GetComponent<characterManager> ().activate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().activate ();
 			cam.player = characters [activeCharacter].transform;
 		}
 	}

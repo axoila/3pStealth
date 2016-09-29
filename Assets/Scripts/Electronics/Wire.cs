@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wire : MonoBehaviour {
+public class Wire : MonoBehaviour {
 
 	public bool active;
 	public Transform endPoint;
@@ -27,29 +27,33 @@ public class wire : MonoBehaviour {
 		active = false;
 		if (!inverted) {
 			foreach (MonoBehaviour script in modified)
-				script.enabled = active;
+				script.enabled = false;
 		} else {
-			foreach (MonoBehaviour script in modified)
-				script.enabled = !active;
+			foreach (MonoBehaviour script in modified) {
+				script.enabled = true;
+			}
 		}
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = offMat;
 		}
+
+		Debug.Log ("DISABLE WIRE");
 	}
 
 	void OnEnable() {
 		active = true;
 		if (!inverted) {
 			foreach (MonoBehaviour script in modified)
-				script.enabled = active;
+				script.enabled = true;
 		} else {
 			foreach (MonoBehaviour script in modified)
-				script.enabled = !active;
+				script.enabled = false;
 		}
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = onMat;
 		}
+		Debug.Log ("ENABLE WIRE");
 	}
 }

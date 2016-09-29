@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pressurePlate : MonoBehaviour {
+public class PressurePlate : MonoBehaviour {
 
 	public int currentweight = 0;
 
@@ -14,7 +14,7 @@ public class pressurePlate : MonoBehaviour {
 
 	public MonoBehaviour[] outputSize6;
 
-	public playerManager playerMngr;
+	public PlayerManager playerMngr;
 
 	// Use this for initialization
 	void Start () {
@@ -51,31 +51,30 @@ public class pressurePlate : MonoBehaviour {
 	}
 
 	void updateStuff () {
+		//Debug.Log ("pressure plate now has a weight of: " + currentweight);
+
 		sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
 
 		for (int i = 0; i < outputSize6.Length; i++) {
 			if (outputSize6 [i] != null) {
 				if (includeLower) {
 					if (i < currentweight) {
-						outputSize6 [i].enabled = true;
+						if(!outputSize6[i].enabled)
+							outputSize6 [i].enabled = true;
 					} else {
+						if(outputSize6[i].enabled)
 						outputSize6 [i].enabled = false;
 					}
 				} else {
 					if (i + 1 == currentweight) {
-						outputSize6 [i].enabled = true;
+						if(!outputSize6[i].enabled)
+							outputSize6 [i].enabled = true;
 					} else {
-						outputSize6 [i].enabled = false;
+						if(outputSize6[i].enabled)
+							outputSize6 [i].enabled = false;
 					}
 				}
 			}
 		}
-
-		/*if (outputSize6[0] != null) {
-			if (currentweight > 0)
-				outputSize6[0].enabled = true;
-			else
-				outputSize6[0].enabled = false;
-		}*/
 	}
 }
