@@ -50,8 +50,6 @@ public class ShockGate : ElectronicsComponent
 			}
 
 			flutter ();
-		} else {
-			
 		}
 	}
 
@@ -75,8 +73,11 @@ public class ShockGate : ElectronicsComponent
 
 
 	protected override void onActivate() {
+		if (buzzing)
+			activateBuzz ();
 	}
 
 	protected override void onDeActivate() {
+		deactivateBuzz ();
 	}
 }

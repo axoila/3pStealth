@@ -8,17 +8,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class ElectronicsComponent : MonoBehaviour {
+public abstract class ElectronicsComponent : MonoBehaviour
+{
 
 	[SerializeField] private bool selfPowered;
+	//selfPowered only descripbes the starting situation, when the component is later turned on and off it can be deactivated
 
-	public bool active {get; private set;}
+	public bool active { get; private set; }
 
 	private List<ElectronicsComponent> powerSupplier;
 
-	void Start () {
-		Debug.Log ("init component");
-
+	// I repeat: do NOT put a Start() method in a child class
+	void Start ()
+	{
+		//init power state
 		if (selfPowered) {
 			active = true;
 			onActivate ();
@@ -26,21 +29,27 @@ public abstract class ElectronicsComponent : MonoBehaviour {
 			active = false;
 			onDeActivate ();
 		}
+
+		//init list of all powerSuppliers
 		powerSupplier = new List<ElectronicsComponent> ();
 	}
 
-	void Update(){
-	}
-
-	public void setEnabled (bool enabled, ElectronicsComponent supplier) {
+	public void setEnabled (bool enabled, ElectronicsComponent supplier)
+	{
 		if (enabled) {
-			powerSupplier.Add (supplier);
-			if (powerSupplier.Count == 1)
-				onActivate ();
+			if (!powerSupplier.Contains (supplier)) {
+				powerSupplier.Add (supplier);
+				if (powerSupplier.Count == 1) {
+					active = true;
+					onActivate ();
+				}
+			}
 		} else {
 			powerSupplier.Remove (supplier);
-			if (powerSupplier.Count == 0)
+			if (powerSupplier.Count == 0) {
+				active = false;
 				onDeActivate ();
+			}
 		}
 	}
 

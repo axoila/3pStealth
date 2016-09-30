@@ -17,7 +17,7 @@ public class Wire : ElectronicsComponent {
 	}
 
 	protected override void onActivate() {
-		Debug.Log ("activate");
+		//Debug.Log ("activate");
 
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
@@ -31,7 +31,7 @@ public class Wire : ElectronicsComponent {
 	}
 
 	protected override void onDeActivate() {
-		Debug.Log ("deactivate");
+		//Debug.Log ("deactivate");
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
 				component.setEnabled (!active, this);

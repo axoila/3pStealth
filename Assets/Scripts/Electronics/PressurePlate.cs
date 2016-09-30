@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PressurePlate : MonoBehaviour {
+public class PressurePlate : ElectronicsComponent {
 
 	public int currentweight = 0;
 
@@ -12,14 +12,9 @@ public class PressurePlate : MonoBehaviour {
 	public Vector3 sliderStart;
 	public Vector3 sliderEnd;
 
-	public MonoBehaviour[] outputSize6;
+	public ElectronicsComponent[] outputSize6;
 
 	public PlayerManager playerMngr;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -27,7 +22,7 @@ public class PressurePlate : MonoBehaviour {
 	}
 
 	void OnTriggerEnter (Collider colli) {
-		Debug.Log (colli);
+		//Debug.Log (colli);
 		if (colli.gameObject == playerMngr.characters [0])
 			currentweight += 1;
 		if (colli.gameObject == playerMngr.characters [1])
@@ -51,30 +46,41 @@ public class PressurePlate : MonoBehaviour {
 	}
 
 	void updateStuff () {
-		//Debug.Log ("pressure plate now has a weight of: " + currentweight);
-
-		sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
-
-		for (int i = 0; i < outputSize6.Length; i++) {
-			if (outputSize6 [i] != null) {
-				if (includeLower) {
-					if (i < currentweight) {
-						if(!outputSize6[i].enabled)
-							outputSize6 [i].enabled = true;
+		if (active) {
+			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
+			for (int i = 0; i < outputSize6.Length; i++) {
+				if (outputSize6 [i] != null) {
+					if (includeLower) {
+						if (i < currentweight) {
+							outputSize6 [i].setEnabled (true, this);
+						} else {
+							outputSize6 [i].setEnabled (false, this);
+						}
 					} else {
-						if(outputSize6[i].enabled)
-						outputSize6 [i].enabled = false;
-					}
-				} else {
-					if (i + 1 == currentweight) {
-						if(!outputSize6[i].enabled)
-							outputSize6 [i].enabled = true;
-					} else {
-						if(outputSize6[i].enabled)
-							outputSize6 [i].enabled = false;
+						if (i + 1 == currentweight) {
+							outputSize6 [i].setEnabled (true, this);
+						} else {
+							outputSize6 [i].setEnabled (false, this);
+						}
 					}
 				}
 			}
+		} else {
+			Debug.Log (active);
+
+			sliderBone.transform.localPosition = sliderStart;
+			for (int i = 0; i < outputSize6.Length; i++) {
+				if (outputSize6 [i] != null) {
+					outputSize6 [i].setEnabled (false, this);
+				}
+			}
 		}
+	}
+
+	protected override void onActivate() {
+	}
+
+	protected override void onDeActivate() {
+		updateStuff ();
 	}
 }
