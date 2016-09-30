@@ -1,32 +1,50 @@
-﻿using System.Collections;
+﻿/**
+ * parent class for all electronic related scripts
+ * when inheriting do NOT use the Start() method 
+ * or call base.Start() in your Start() method
+ * */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElectronicsComponent : MonoBehaviour {
+public abstract class ElectronicsComponent : MonoBehaviour {
 
-	public bool selfPowered;
+	[SerializeField] private bool selfPowered;
 
-	private int powered = 0; //how many other components power this one
-	private bool active = false;
+	public bool active {get; private set;}
 
 	private List<ElectronicsComponent> powerSupplier;
 
-	// Use this for initialization
 	void Start () {
-		if (selfPowered)
+		Debug.Log ("init component");
+
+		if (selfPowered) {
 			active = true;
+			onActivate ();
+		} else {
+			active = false;
+			onDeActivate ();
+		}
 		powerSupplier = new List<ElectronicsComponent> ();
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	void Update(){
 	}
 
-	public void disable () {
-
+	public void setEnabled (bool enabled, ElectronicsComponent supplier) {
+		if (enabled) {
+			powerSupplier.Add (supplier);
+			if (powerSupplier.Count == 1)
+				onActivate ();
+		} else {
+			powerSupplier.Remove (supplier);
+			if (powerSupplier.Count == 0)
+				onDeActivate ();
+		}
 	}
 
-	public void enable (ElectronicsComponent supplier) {
-	}
+	protected abstract void onActivate ();
+
+	protected abstract void onDeActivate ();
 }

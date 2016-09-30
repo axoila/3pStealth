@@ -28,7 +28,7 @@ public class HeatTower : MonoBehaviour {
 	void OnDisable() {
 		//disables the light
 		transform.GetChild (0).gameObject.SetActive (false);
-		game
+
 	}
 
 	void OnEnable() {

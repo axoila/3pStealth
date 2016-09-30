@@ -2,12 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShockGate : MonoBehaviour
+public class ShockGate : ElectronicsComponent
 {
 
-	public bool working = true;
-
-	public bool active = true;
+	public bool buzzing = true;
 
 	public float upTime = 1;
 	public float downTime = 1;
@@ -38,16 +36,16 @@ public class ShockGate : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (working) {
+		if (active) {
 			timer += Time.deltaTime;
-			if (active && timer > upTime) {
-				deActivate ();
-				active = false;
+			if (buzzing && timer > upTime && downTime != 0) {
+				deactivateBuzz ();
+				buzzing = false;
 				timer = 0;
 			}
-			if (!active && timer > downTime) {
-				activate ();
-				active = true;
+			if (!buzzing && timer > downTime) {
+				activateBuzz ();
+				buzzing = true;
 				timer = 0;
 			}
 
@@ -60,20 +58,25 @@ public class ShockGate : MonoBehaviour
 	void flutter(){
 		for (int i = 0; i < bones.Length; i++) {
 			bones [i].position = boneLocations [i] + new Vector3 (0, Random.value - 0.5f, Random.value-0.5f) * flutterAmount;
-
-
 		}
 	}
 
-	void activate ()
+	void activateBuzz ()
 	{
 		foreach (GameObject bar in energyBars)
 			bar.SetActive (true);
 	}
 
-	void deActivate ()
+	void deactivateBuzz ()
 	{
 		foreach (GameObject bar in energyBars)
 			bar.SetActive (false);
+	}
+
+
+	protected override void onActivate() {
+	}
+
+	protected override void onDeActivate() {
 	}
 }
