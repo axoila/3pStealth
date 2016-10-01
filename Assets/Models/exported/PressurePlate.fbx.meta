@@ -15,6 +15,7 @@ ModelImporter:
     100014: //RootNode
     100016: staticBone
     100018: staticBone_end
+    100020: LowPoly
     400000: Armature
     400002: Camera
     400004: Display
@@ -25,10 +26,14 @@ ModelImporter:
     400014: //RootNode
     400016: staticBone
     400018: staticBone_end
+    400020: LowPoly
     2300000: Plate
+    2300002: LowPoly
     3300000: Plate
+    3300002: LowPoly
     4300000: Display
     4300002: Plate
+    4300004: LowPoly
     9500000: //RootNode
     13700000: Display
   materials:
@@ -77,6 +82,7 @@ ModelImporter:
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -89,6 +95,8 @@ ModelImporter:
     rootMotionBoneName: 
     rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   animationType: 2
   humanoidOversampling: 1
