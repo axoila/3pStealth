@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +11,10 @@ public class CharacterManager : MonoBehaviour
 	public float speed;
 	[SerializeField] private float gravityScale;
 
+    [SerializeField]
+    private Ability ability;
+    private float coolDownRemaining;
+    private bool abilityReady=true;
 	private Material playerMaterial;
 	private Transform worldDirection;
 	private Rigidbody rigid;
@@ -27,7 +31,8 @@ public class CharacterManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-		if (active) {
+		if (active)
+        {
 			playerMaterial.SetColor ("_OutlineColor", characterOutline);
 
 			Vector3 moveDirection = (worldDirection.forward * Input.GetAxis ("Vertical")) + 
@@ -38,9 +43,18 @@ public class CharacterManager : MonoBehaviour
 
 			moveDirection.y = Mathf.Clamp (rigid.velocity.y + Physics.gravity.y * gravityScale * Time.deltaTime, -9999999, 0);
 			rigid.velocity = (moveDirection);
-		} else {
+
+            if (Input.GetButtonDown("Fire1")) ActivateAbility();
+		}
+        else
+        {
 			playerMaterial.SetColor ("_OutlineColor", new Color (1, 1, 1, 0));
 		}
+        if (!abilityReady)
+        {
+            coolDownRemaining -= Time.deltaTime;
+            if (coolDownRemaining < 0) abilityReady = true;
+        }
 	}
 
 	public void DeActivate ()
@@ -58,4 +72,14 @@ public class CharacterManager : MonoBehaviour
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 	}
+
+    private void ActivateAbility()
+    {
+        if(abilityReady)
+        {
+            ability.Activate(gameObject);
+            abilityReady = false;
+            coolDownRemaining = ability.cooldown;
+        }
+    }
 }
