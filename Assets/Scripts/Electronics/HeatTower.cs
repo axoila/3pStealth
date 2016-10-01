@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,11 +10,14 @@ public class HeatTower : ElectronicsComponent {
 	private float timer;
 
 	// Update is called once per frame
-	void Update () {
-		if (Active) {
+	void Update ()
+    {
+		if (Active)
+        {
 			timer += Time.deltaTime;
 
-			if (timer >= cooldown) {
+			if (timer >= cooldown)
+            {
 				timer = 0;
 				GameObject instance = Instantiate (particle, transform.position + new Vector3 (0f, 0.02f, 0f), Quaternion.Euler (Vector3.zero));
 				instance.transform.SetParent (transform);

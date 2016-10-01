@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,8 @@ public class Wire : ElectronicsComponent {
 	void Update () {
 	}
 
-	protected override void OnActivate() {
+	protected override void OnActivate()
+    {
 		//Debug.Log ("activate");
 
 		foreach (ElectronicsComponent component in modified)
@@ -25,12 +26,14 @@ public class Wire : ElectronicsComponent {
 			else
 				component.SetEnabled (Active, this);
 
-		foreach (Renderer wirePiece in wireObject) {
+		foreach (Renderer wirePiece in wireObject)
+        {
 			wirePiece.material = onMat;
 		}
 	}
 
-	protected override void OnDeActivate() {
+	protected override void OnDeActivate()
+    {
 		//Debug.Log ("deactivate");
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
@@ -38,7 +41,8 @@ public class Wire : ElectronicsComponent {
 			else
 				component.SetEnabled (Active, this);
 
-		foreach (Renderer wirePiece in wireObject) {
+		foreach (Renderer wirePiece in wireObject)
+        {
 			wirePiece.material = offMat;
 		}
 	}

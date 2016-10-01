@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +16,8 @@ public class PressurePlate : ElectronicsComponent {
 
 	public PlayerManager playerMngr;
 
-	void OnTriggerEnter (Collider colli) {
+	void OnTriggerEnter (Collider colli)
+    {
 		//Debug.Log (colli);
 		if (colli.gameObject == playerMngr.characters [0])
 			Currentweight += 1;
@@ -28,7 +29,8 @@ public class PressurePlate : ElectronicsComponent {
 		UpdateStuff ();
 	}
 
-	void OnTriggerExit (Collider colli) {
+	void OnTriggerExit (Collider colli)
+    {
 		//Debug.Log (colli);
 		if (colli.gameObject == playerMngr.characters [0])
 			Currentweight -= 1;
@@ -43,29 +45,43 @@ public class PressurePlate : ElectronicsComponent {
 	void UpdateStuff () {
 		if (Active) {
 			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, Currentweight / 6f);
-			for (int i = 0; i < outputSize6.Length; i++) {
-				if (outputSize6 [i] != null) {
+			for (int i = 0; i < outputSize6.Length; i++)
+            {
+				if (outputSize6 [i] != null)
+                {
 					if (includeLower) {
-						if (i < Currentweight) {
+						if (i < Currentweight)
+                        {
 							outputSize6 [i].SetEnabled (true, this);
-						} else {
+						}
+                        else
+                        {
 							outputSize6 [i].SetEnabled (false, this);
 						}
-					} else {
-						if (i + 1 == Currentweight) {
+					}
+                    else
+                    {
+						if (i + 1 == Currentweight)
+                        {
 							outputSize6 [i].SetEnabled (true, this);
-						} else {
+						}
+                        else
+                        {
 							outputSize6 [i].SetEnabled (false, this);
 						}
 					}
 				}
 			}
-		} else {
+		}
+        else
+        {
 			Debug.Log (Active);
 
 			sliderBone.transform.localPosition = sliderStart;
-			for (int i = 0; i < outputSize6.Length; i++) {
-				if (outputSize6 [i] != null) {
+			for (int i = 0; i < outputSize6.Length; i++)
+            {
+				if (outputSize6 [i] != null)
+                {
 					outputSize6 [i].SetEnabled (false, this);
 				}
 			}

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,7 +28,8 @@ public class ShockGate : ElectronicsComponent
 			bones [i] = armature.transform.GetChild (i);
 
 		boneLocations = new Vector3[bones.Length];
-		for (int i = 0; i < bones.Length; i++) {
+		for (int i = 0; i < bones.Length; i++)
+        {
 			boneLocations [i] = bones [i].transform.position;
 		}
 	}
@@ -36,14 +37,17 @@ public class ShockGate : ElectronicsComponent
 	// Update is called once per frame
 	void Update ()
 	{
-		if (Active) {
+		if (Active)
+        {
 			timer += Time.deltaTime;
-			if (buzzing && timer > upTime && downTime != 0) {
+			if (buzzing && timer > upTime && downTime != 0)
+            {
 				DeactivateBuzz ();
 				buzzing = false;
 				timer = 0;
 			}
-			if (!buzzing && timer > downTime) {
+			if (!buzzing && timer > downTime)
+            {
 				ActivateBuzz ();
 				buzzing = true;
 				timer = 0;
@@ -54,7 +58,8 @@ public class ShockGate : ElectronicsComponent
 	}
 
 	void Flutter(){
-		for (int i = 0; i < bones.Length; i++) {
+		for (int i = 0; i < bones.Length; i++)
+        {
 			bones [i].position = boneLocations [i] + new Vector3 (0, Random.value - 0.5f, Random.value-0.5f) * flutterAmount;
 		}
 	}

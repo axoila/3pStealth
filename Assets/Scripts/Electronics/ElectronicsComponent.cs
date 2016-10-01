@@ -1,4 +1,4 @@
-﻿/**
+/**
  * parent class for all electronic related scripts
  * when inheriting do NOT use the Start() method 
  * or call base.Start() in your Start() method
@@ -22,10 +22,13 @@ public abstract class ElectronicsComponent : MonoBehaviour
 	void Start ()
 	{
 		//init power state
-		if (selfPowered) {
+		if (selfPowered)
+        {
 			Active = true;
 			OnActivate ();
-		} else {
+		}
+        else
+        {
 			Active = false;
 			OnDeActivate ();
 		}
@@ -36,17 +39,23 @@ public abstract class ElectronicsComponent : MonoBehaviour
 
 	public void SetEnabled (bool enabled, ElectronicsComponent supplier)
 	{
-		if (enabled) {
-			if (!powerSupplier.Contains (supplier)) {
+		if (enabled)
+        {
+			if (!powerSupplier.Contains (supplier))
+            {
 				powerSupplier.Add (supplier);
-				if (powerSupplier.Count == 1) {
+				if (powerSupplier.Count == 1)
+                {
 					Active = true;
 					OnActivate ();
 				}
 			}
-		} else {
+		}
+        else
+        {
 			powerSupplier.Remove (supplier);
-			if (powerSupplier.Count == 0) {
+			if (powerSupplier.Count == 0)
+            {
 				Active = false;
 				OnDeActivate ();
 			}
