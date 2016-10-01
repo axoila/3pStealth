@@ -5,15 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CharacterManager : MonoBehaviour
 {
-
 	public bool active;
 	public Color characterOutline;
 
 	public float speed;
+	[SerializeField] private float gravityScale;
 
 	private Material playerMaterial;
 	private Transform worldDirection;
-	private CharacterController controller;
+	private Rigidbody rigid;
 
 	// Use this for initialization
 	void Start ()
@@ -21,7 +21,7 @@ public class CharacterManager : MonoBehaviour
 		playerMaterial = GetComponent<Renderer> ().material;
 		worldDirection = Camera.main.transform;
 
-		controller = GetComponent<CharacterController> ();
+		rigid = GetComponent<Rigidbody> ();
 	}
 	
 	// Update is called once per frame
@@ -30,21 +30,25 @@ public class CharacterManager : MonoBehaviour
 		if (active) {
 			playerMaterial.SetColor ("_OutlineColor", characterOutline);
 
-			Vector3 moveDirection = (worldDirection.forward * Input.GetAxis ("Vertical") + 
-				worldDirection.right * Input.GetAxis ("Horizontal")).normalized;
+			Vector3 moveDirection = (worldDirection.forward * Input.GetAxis ("Vertical")) + 
+				(worldDirection.right * Input.GetAxis ("Horizontal"));
 			moveDirection.Scale(new Vector3(1, 0, 1));
-			controller.SimpleMove (moveDirection * speed);
+			moveDirection.Normalize ();
+			moveDirection *= speed;
+
+			moveDirection.y = Mathf.Clamp (rigid.velocity.y + Physics.gravity.y * gravityScale * Time.deltaTime, -9999999, 0);
+			rigid.velocity = (moveDirection);
 		} else {
 			playerMaterial.SetColor ("_OutlineColor", new Color (1, 1, 1, 0));
 		}
 	}
 
-	public void deActivate ()
+	public void DeActivate ()
 	{
 		active = false;
 	}
 
-	public void activate ()
+	public void Activate ()
 	{
 		active = true;
 	}
