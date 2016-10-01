@@ -8,12 +8,15 @@ public class CharacterManager : MonoBehaviour
 	public bool active;
 	public Color characterOutline;
 
+	[SerializeField] private float friction = 0.1f;
 	public float speed;
 	[SerializeField] private float gravityScale;
 
 	private Material playerMaterial;
 	private Transform worldDirection;
 	private Rigidbody rigid;
+
+	private Vector3 moveDirection = Vector3.zero;
 
 	// Use this for initialization
 	void Start ()
@@ -27,10 +30,13 @@ public class CharacterManager : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
+		//friction
+		rigid.velocity *= 1-(friction * Time.deltaTime);
+
 		if (active) {
 			playerMaterial.SetColor ("_OutlineColor", characterOutline);
 
-			Vector3 moveDirection = (worldDirection.forward * Input.GetAxis ("Vertical")) + 
+			moveDirection = (worldDirection.forward * Input.GetAxis ("Vertical")) + 
 				(worldDirection.right * Input.GetAxis ("Horizontal"));
 			moveDirection.Scale(new Vector3(1, 0, 1));
 			moveDirection.Normalize ();
