@@ -11,7 +11,7 @@ public class HeatTower : ElectronicsComponent {
 
 	// Update is called once per frame
 	void Update () {
-		if (active) {
+		if (Active) {
 			timer += Time.deltaTime;
 
 			if (timer >= cooldown) {

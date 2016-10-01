@@ -36,7 +36,7 @@ public class ShockGate : ElectronicsComponent
 	// Update is called once per frame
 	void Update ()
 	{
-		if (active) {
+		if (Active) {
 			timer += Time.deltaTime;
 			if (buzzing && timer > upTime && downTime != 0) {
 				DeactivateBuzz ();

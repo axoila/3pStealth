@@ -21,9 +21,9 @@ public class Wire : ElectronicsComponent {
 
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
-				component.SetEnabled (!active, this);
+				component.SetEnabled (!Active, this);
 			else
-				component.SetEnabled (active, this);
+				component.SetEnabled (Active, this);
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = onMat;
@@ -34,9 +34,9 @@ public class Wire : ElectronicsComponent {
 		//Debug.Log ("deactivate");
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
-				component.SetEnabled (!active, this);
+				component.SetEnabled (!Active, this);
 			else
-				component.SetEnabled (active, this);
+				component.SetEnabled (Active, this);
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = offMat;

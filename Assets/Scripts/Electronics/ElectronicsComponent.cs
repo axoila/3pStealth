@@ -14,7 +14,7 @@ public abstract class ElectronicsComponent : MonoBehaviour
 	[SerializeField] private bool selfPowered;
 	//selfPowered only descripbes the starting situation, when the component is later turned on and off it can be deactivated
 
-	public bool active { get; private set; }
+	public bool Active { get; private set; }
 
 	private List<ElectronicsComponent> powerSupplier;
 
@@ -23,10 +23,10 @@ public abstract class ElectronicsComponent : MonoBehaviour
 	{
 		//init power state
 		if (selfPowered) {
-			active = true;
+			Active = true;
 			OnActivate ();
 		} else {
-			active = false;
+			Active = false;
 			OnDeActivate ();
 		}
 
@@ -40,14 +40,14 @@ public abstract class ElectronicsComponent : MonoBehaviour
 			if (!powerSupplier.Contains (supplier)) {
 				powerSupplier.Add (supplier);
 				if (powerSupplier.Count == 1) {
-					active = true;
+					Active = true;
 					OnActivate ();
 				}
 			}
 		} else {
 			powerSupplier.Remove (supplier);
 			if (powerSupplier.Count == 0) {
-				active = false;
+				Active = false;
 				OnDeActivate ();
 			}
 		}

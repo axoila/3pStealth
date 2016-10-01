@@ -41,7 +41,7 @@ public class PressurePlate : ElectronicsComponent {
 	}
 
 	void UpdateStuff () {
-		if (active) {
+		if (Active) {
 			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
 			for (int i = 0; i < outputSize6.Length; i++) {
 				if (outputSize6 [i] != null) {
@@ -61,7 +61,7 @@ public class PressurePlate : ElectronicsComponent {
 				}
 			}
 		} else {
-			Debug.Log (active);
+			Debug.Log (Active);
 
 			sliderBone.transform.localPosition = sliderStart;
 			for (int i = 0; i < outputSize6.Length; i++) {
