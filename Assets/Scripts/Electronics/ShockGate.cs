@@ -5,15 +5,15 @@ using UnityEngine;
 public class ShockGate : ElectronicsComponent
 {
 
-	public bool buzzing = true;
+	public bool buzzing { private set; get;}
 
-	public float upTime = 1;
-	public float downTime = 1;
+	[SerializeField] private float upTime = 1;
+	[SerializeField] private float downTime = 1;
 
-	public GameObject[] energyBars;
-	public GameObject armature;
+	[SerializeField] private GameObject[] energyBars;
+	[SerializeField] private GameObject armature;
 
-	public float flutterAmount;
+	[SerializeField] private float flutterAmount;
 
 	private Vector3[] boneLocations;
 

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PressurePlate : ElectronicsComponent {
 
-	public int currentweight = 0;
+	public int Currentweight { private set; get;}
 
-	public bool includeLower = true;
+	[SerializeField] private bool includeLower = true;
 
-	public GameObject sliderBone;
-	public Vector3 sliderStart;
-	public Vector3 sliderEnd;
+	[SerializeField] private GameObject sliderBone;
+	[SerializeField] private Vector3 sliderStart;
+	[SerializeField] private Vector3 sliderEnd;
 
 	public ElectronicsComponent[] outputSize6;
 
@@ -19,11 +19,11 @@ public class PressurePlate : ElectronicsComponent {
 	void OnTriggerEnter (Collider colli) {
 		//Debug.Log (colli);
 		if (colli.gameObject == playerMngr.characters [0])
-			currentweight += 1;
+			Currentweight += 1;
 		if (colli.gameObject == playerMngr.characters [1])
-			currentweight += 2;
+			Currentweight += 2;
 		if (colli.gameObject == playerMngr.characters [2])
-			currentweight += 3;
+			Currentweight += 3;
 
 		UpdateStuff ();
 	}
@@ -31,28 +31,28 @@ public class PressurePlate : ElectronicsComponent {
 	void OnTriggerExit (Collider colli) {
 		//Debug.Log (colli);
 		if (colli.gameObject == playerMngr.characters [0])
-			currentweight -= 1;
+			Currentweight -= 1;
 		if (colli.gameObject == playerMngr.characters [1])
-			currentweight -= 2;
+			Currentweight -= 2;
 		if (colli.gameObject == playerMngr.characters [2])
-			currentweight -= 3;
+			Currentweight -= 3;
 
 		UpdateStuff ();
 	}
 
 	void UpdateStuff () {
 		if (Active) {
-			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
+			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, Currentweight / 6f);
 			for (int i = 0; i < outputSize6.Length; i++) {
 				if (outputSize6 [i] != null) {
 					if (includeLower) {
-						if (i < currentweight) {
+						if (i < Currentweight) {
 							outputSize6 [i].SetEnabled (true, this);
 						} else {
 							outputSize6 [i].SetEnabled (false, this);
 						}
 					} else {
-						if (i + 1 == currentweight) {
+						if (i + 1 == Currentweight) {
 							outputSize6 [i].SetEnabled (true, this);
 						} else {
 							outputSize6 [i].SetEnabled (false, this);
