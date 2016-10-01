@@ -22,11 +22,11 @@ public class HeatTower : ElectronicsComponent {
 		}
 	}
 
-	protected override void onActivate() {
+	protected override void OnActivate() {
 		transform.GetChild (0).gameObject.SetActive (true);
 	}
 
-	protected override void onDeActivate() {
+	protected override void OnDeActivate() {
 		transform.GetChild (0).gameObject.SetActive (false);
 	}
 }

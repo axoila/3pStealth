@@ -15,11 +15,6 @@ public class PressurePlate : ElectronicsComponent {
 	public ElectronicsComponent[] outputSize6;
 
 	public PlayerManager playerMngr;
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
 	void OnTriggerEnter (Collider colli) {
 		//Debug.Log (colli);
@@ -30,7 +25,7 @@ public class PressurePlate : ElectronicsComponent {
 		if (colli.gameObject == playerMngr.characters [2])
 			currentweight += 3;
 
-		updateStuff ();
+		UpdateStuff ();
 	}
 
 	void OnTriggerExit (Collider colli) {
@@ -42,25 +37,25 @@ public class PressurePlate : ElectronicsComponent {
 		if (colli.gameObject == playerMngr.characters [2])
 			currentweight -= 3;
 
-		updateStuff ();
+		UpdateStuff ();
 	}
 
-	void updateStuff () {
+	void UpdateStuff () {
 		if (active) {
 			sliderBone.transform.localPosition = Vector3.Lerp (sliderStart, sliderEnd, currentweight / 6f);
 			for (int i = 0; i < outputSize6.Length; i++) {
 				if (outputSize6 [i] != null) {
 					if (includeLower) {
 						if (i < currentweight) {
-							outputSize6 [i].setEnabled (true, this);
+							outputSize6 [i].SetEnabled (true, this);
 						} else {
-							outputSize6 [i].setEnabled (false, this);
+							outputSize6 [i].SetEnabled (false, this);
 						}
 					} else {
 						if (i + 1 == currentweight) {
-							outputSize6 [i].setEnabled (true, this);
+							outputSize6 [i].SetEnabled (true, this);
 						} else {
-							outputSize6 [i].setEnabled (false, this);
+							outputSize6 [i].SetEnabled (false, this);
 						}
 					}
 				}
@@ -71,16 +66,16 @@ public class PressurePlate : ElectronicsComponent {
 			sliderBone.transform.localPosition = sliderStart;
 			for (int i = 0; i < outputSize6.Length; i++) {
 				if (outputSize6 [i] != null) {
-					outputSize6 [i].setEnabled (false, this);
+					outputSize6 [i].SetEnabled (false, this);
 				}
 			}
 		}
 	}
 
-	protected override void onActivate() {
+	protected override void OnActivate() {
 	}
 
-	protected override void onDeActivate() {
-		updateStuff ();
+	protected override void OnDeActivate() {
+		UpdateStuff ();
 	}
 }

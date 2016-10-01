@@ -39,45 +39,45 @@ public class ShockGate : ElectronicsComponent
 		if (active) {
 			timer += Time.deltaTime;
 			if (buzzing && timer > upTime && downTime != 0) {
-				deactivateBuzz ();
+				DeactivateBuzz ();
 				buzzing = false;
 				timer = 0;
 			}
 			if (!buzzing && timer > downTime) {
-				activateBuzz ();
+				ActivateBuzz ();
 				buzzing = true;
 				timer = 0;
 			}
 
-			flutter ();
+			Flutter ();
 		}
 	}
 
-	void flutter(){
+	void Flutter(){
 		for (int i = 0; i < bones.Length; i++) {
 			bones [i].position = boneLocations [i] + new Vector3 (0, Random.value - 0.5f, Random.value-0.5f) * flutterAmount;
 		}
 	}
 
-	void activateBuzz ()
+	void ActivateBuzz ()
 	{
 		foreach (GameObject bar in energyBars)
 			bar.SetActive (true);
 	}
 
-	void deactivateBuzz ()
+	void DeactivateBuzz ()
 	{
 		foreach (GameObject bar in energyBars)
 			bar.SetActive (false);
 	}
 
 
-	protected override void onActivate() {
+	protected override void OnActivate() {
 		if (buzzing)
-			activateBuzz ();
+			ActivateBuzz ();
 	}
 
-	protected override void onDeActivate() {
-		deactivateBuzz ();
+	protected override void OnDeActivate() {
+		DeactivateBuzz ();
 	}
 }

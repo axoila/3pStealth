@@ -24,36 +24,36 @@ public abstract class ElectronicsComponent : MonoBehaviour
 		//init power state
 		if (selfPowered) {
 			active = true;
-			onActivate ();
+			OnActivate ();
 		} else {
 			active = false;
-			onDeActivate ();
+			OnDeActivate ();
 		}
 
 		//init list of all powerSuppliers
 		powerSupplier = new List<ElectronicsComponent> ();
 	}
 
-	public void setEnabled (bool enabled, ElectronicsComponent supplier)
+	public void SetEnabled (bool enabled, ElectronicsComponent supplier)
 	{
 		if (enabled) {
 			if (!powerSupplier.Contains (supplier)) {
 				powerSupplier.Add (supplier);
 				if (powerSupplier.Count == 1) {
 					active = true;
-					onActivate ();
+					OnActivate ();
 				}
 			}
 		} else {
 			powerSupplier.Remove (supplier);
 			if (powerSupplier.Count == 0) {
 				active = false;
-				onDeActivate ();
+				OnDeActivate ();
 			}
 		}
 	}
 
-	protected abstract void onActivate ();
+	protected abstract void OnActivate ();
 
-	protected abstract void onDeActivate ();
+	protected abstract void OnDeActivate ();
 }

@@ -16,27 +16,27 @@ public class Wire : ElectronicsComponent {
 	void Update () {
 	}
 
-	protected override void onActivate() {
+	protected override void OnActivate() {
 		//Debug.Log ("activate");
 
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
-				component.setEnabled (!active, this);
+				component.SetEnabled (!active, this);
 			else
-				component.setEnabled (active, this);
+				component.SetEnabled (active, this);
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = onMat;
 		}
 	}
 
-	protected override void onDeActivate() {
+	protected override void OnDeActivate() {
 		//Debug.Log ("deactivate");
 		foreach (ElectronicsComponent component in modified)
 			if (inverted)
-				component.setEnabled (!active, this);
+				component.SetEnabled (!active, this);
 			else
-				component.setEnabled (active, this);
+				component.SetEnabled (active, this);
 
 		foreach (Renderer wirePiece in wireObject) {
 			wirePiece.material = offMat;
