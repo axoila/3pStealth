@@ -18,19 +18,19 @@ public class PlayerManager : MonoBehaviour {
 
 		//cycle through characters
 		if (Input.GetAxis ("Mouse ScrollWheel") > 0 || Input.GetButtonDown("Next Character")) {
-			characters [activeCharacter].GetComponent<CharacterManager> ().deActivate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().DeActivate ();
 			activeCharacter++;
 			if (activeCharacter >= characters.Length)
 				activeCharacter = 0;
-			characters [activeCharacter].GetComponent<CharacterManager> ().activate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().Activate ();
 			cam.player = characters [activeCharacter].transform;
 		}
-		if (Input.GetAxis ("Mouse ScrollWheel") < 0) {
-			characters [activeCharacter].GetComponent<CharacterManager> ().deActivate ();
+		if (Input.GetAxis ("Mouse ScrollWheel") < 0 || Input.GetButtonDown("Previous Character")) {
+			characters [activeCharacter].GetComponent<CharacterManager> ().DeActivate ();
 			activeCharacter--;
 			if (activeCharacter < 0)
 				activeCharacter = characters.Length-1;
-			characters [activeCharacter].GetComponent<CharacterManager> ().activate ();
+			characters [activeCharacter].GetComponent<CharacterManager> ().Activate ();
 			cam.player = characters [activeCharacter].transform;
 		}
 	}
