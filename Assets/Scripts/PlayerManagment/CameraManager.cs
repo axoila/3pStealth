@@ -16,6 +16,6 @@ public class CameraManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = Vector3.Lerp(transform.position, player.position + offset, Time.deltaTime * hardness);
+		transform.position = player.position + offset;
 	}
 }
