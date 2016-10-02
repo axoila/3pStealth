@@ -1,0 +1,158 @@
+fileFormatVersion: 2
+guid: fe8e0221bd863454481ab2038c7eeccf
+timeCreated: 1475439647
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Backuo_02
+    100002: Backup_01
+    100004: Corner_--
+    100006: Corner_--_001
+    100008: Corner_-_
+    100010: Corner_-__001
+    100012: Corner__-
+    100014: Corner__-_001
+    100016: Corner___
+    100018: Corner____001
+    100020: Cube_003
+    100022: Cube_004
+    100024: ElevatorUnlockRoom
+    100026: Ground
+    100028: Ground_001
+    100030: tiny_way_around
+    100032: tiny_way_around_001
+    100034: //RootNode
+    400000: Backuo_02
+    400002: Backup_01
+    400004: Corner_--
+    400006: Corner_--_001
+    400008: Corner_-_
+    400010: Corner_-__001
+    400012: Corner__-
+    400014: Corner__-_001
+    400016: Corner___
+    400018: Corner____001
+    400020: Cube_003
+    400022: Cube_004
+    400024: ElevatorUnlockRoom
+    400026: Ground
+    400028: Ground_001
+    400030: tiny_way_around
+    400032: tiny_way_around_001
+    400034: //RootNode
+    2300000: Corner_--
+    2300002: Corner_--_001
+    2300004: Corner_-_
+    2300006: Corner_-__001
+    2300008: Corner__-
+    2300010: Corner__-_001
+    2300012: Corner___
+    2300014: Corner____001
+    2300016: Cube_003
+    2300018: Cube_004
+    2300020: ElevatorUnlockRoom
+    2300022: Ground
+    2300024: Ground_001
+    2300026: tiny_way_around
+    2300028: tiny_way_around_001
+    3300000: Corner_--
+    3300002: Corner_--_001
+    3300004: Corner_-_
+    3300006: Corner_-__001
+    3300008: Corner__-
+    3300010: Corner__-_001
+    3300012: Corner___
+    3300014: Corner____001
+    3300016: Cube_003
+    3300018: Cube_004
+    3300020: ElevatorUnlockRoom
+    3300022: Ground
+    3300024: Ground_001
+    3300026: tiny_way_around
+    3300028: tiny_way_around_001
+    4300000: ElevatorUnlockRoom
+    4300002: tiny_way_around
+    4300004: Corner_--
+    4300006: Corner___
+    4300008: Corner_-_
+    4300010: Corner__-
+    4300012: Ground
+    4300014: Ground_001
+    4300016: Corner_-__001
+    4300018: Corner____001
+    4300020: Corner_--_001
+    4300022: tiny_way_around_001
+    4300024: Corner__-_001
+    4300026: Cube_004
+    4300028: Cube_003
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
