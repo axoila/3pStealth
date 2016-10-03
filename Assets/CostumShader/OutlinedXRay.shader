@@ -1,4 +1,4 @@
-﻿Shader "Outlined/Diffuse" {
+﻿Shader "XRay/Outlined" {
 	Properties {
 		_Color ("Main Color", Color) = (.5,.5,.5,1)
 		_OutlineColor ("Outline Color", Color) = (0,0,0,1)
@@ -58,9 +58,10 @@ ENDCG
 		// note that a vertex shader is specified here but its using the one above
 		Pass {
 			Name "OUTLINE"
-			Tags { "LightMode" = "Always"}
+			Tags { "LightMode" = "Always" "Queue" = "Geometry+10"}
 			Cull Front
 			ZWrite On
+			ZTest Less
 			ColorMask RGB
 			Blend SrcAlpha OneMinusSrcAlpha
 			//Offset 50,50
@@ -93,9 +94,10 @@ ENDCG
  
 		Pass {
 			Name "OUTLINE"
-			Tags { "LightMode" = "Always"}
+			Tags { "LightMode" = "Always" "Queue" = "Geometry+10"}
 			Cull Front
 			ZWrite On
+			ZTest Always
 			ColorMask RGB
 			Blend SrcAlpha OneMinusSrcAlpha
  
