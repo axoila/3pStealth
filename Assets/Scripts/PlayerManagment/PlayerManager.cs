@@ -10,7 +10,12 @@ public class PlayerManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		for (int i = 0; i < characters.Length; i++) {
+			if (i == activeCharacter)
+				characters [i].GetComponent<CharacterManager> ().Activate ();
+			else
+				characters [i].GetComponent<CharacterManager> ().DeActivate ();
+		}
 	}
 	
 	// Update is called once per frame
