@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -37,6 +38,12 @@ public class PlayerManager : MonoBehaviour {
 				activeCharacter = characters.Length-1;
 			characters [activeCharacter].GetComponent<CharacterManager> ().Activate ();
 			cam.player = characters [activeCharacter].transform;
+		}
+
+		if (Input.GetButtonDown ("CHEAT")) {
+			foreach(GameObject chara in characters){
+				chara.GetComponent<NavMeshAgent>().Warp(characters [activeCharacter].transform.position);
+			}
 		}
 	}
 }
