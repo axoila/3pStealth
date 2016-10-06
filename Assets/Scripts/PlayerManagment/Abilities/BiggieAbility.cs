@@ -16,7 +16,7 @@ public class BiggieAbility : Ability
             if(col.CompareTag("Player"))
                 if(col.gameObject!=activator)
                 {
-                    col.GetComponent<Rigidbody>().AddForce((col.gameObject.transform.position - activator.transform.position + Vector3.up*yForceScale).normalized * force);
+					col.GetComponent<CharacterManager>().push((col.gameObject.transform.position - activator.transform.position + Vector3.up*yForceScale).normalized * force);
                 }
         }
     }

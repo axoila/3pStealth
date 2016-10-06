@@ -93,8 +93,10 @@ public class CharacterManager : MonoBehaviour
 			SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
 		}
 
-		if (coll.CompareTag ("NoCharacterWalk"))
+		if (coll.CompareTag ("NoCharacterWalk")) {
 			canWalk++;
+			agent.enabled = false;
+		}
 	}
 
 	void OnTriggerExit (Collider coll) {
@@ -127,5 +129,6 @@ public class CharacterManager : MonoBehaviour
 
 	public void push (Vector3 pushForce) {
 		agent.enabled = false;
+		rigid.AddForce (pushForce);
 	}
 }
