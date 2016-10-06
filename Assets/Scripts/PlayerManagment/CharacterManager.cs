@@ -57,7 +57,7 @@ public class CharacterManager : MonoBehaviour
 			moveDirection.y = Mathf.Clamp (rigid.velocity.y + Physics.gravity.y * gravityScale * Time.deltaTime, -9999999, 0);
 			rigid.velocity = (moveDirection);
 
-            if (Input.GetButtonDown("Fire1")) 
+            if (Input.GetButtonDown("Interact")) 
 				ActivateAbility();
 		}
         else
@@ -124,6 +124,9 @@ public class CharacterManager : MonoBehaviour
 			} else {
 				agent.Stop ();
 			}
+		} else {
+			if (rigid.velocity.magnitude < 0.1f)
+				agent.enabled = true;
 		}
 	}
 
