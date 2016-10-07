@@ -5,6 +5,8 @@ using UnityEngine;
 public abstract class EnemyBase : MonoBehaviour
 {
     public bool IsWaiting { protected set; get; }
+    public float SearchAngle { protected set; get; }
+    public float SearchRadius { protected set; get; }
 
     [SerializeField] protected MeshRenderer stateIndicator;
     protected EnemyStateManager stateManager;

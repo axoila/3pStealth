@@ -42,5 +42,7 @@ public class TestEnemy : EnemyBase
     {
         stateManager.PatrolState.SetToNewPathOrDefault(1);
         stateManager.PatrolState.SetPatrolSpeed(5f);
+        SearchAngle = 90;
+        SearchRadius = 5;
     }
 }
