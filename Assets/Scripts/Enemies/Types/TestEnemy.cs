@@ -1,48 +1,50 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestEnemy : EnemyBase
 {
-    protected override void Start () {
-        stateManager = new EnemyStateManager(gameObject, stateIndicator);
-        TestInit();
-    }
-	
-	// Update is called once per frame
-    protected override void Update () {
-		stateManager.UpdateState();
-	}
+    private DetectorCone _detector;
+    private EnemyController _controller;
 
-    protected override void UpdateStateIndicator()
+    protected override void Start()
     {
-        if(stateManager.CurrentState is PatrolState)ChangeIndicatorColor(Color.green);
-        if(stateManager.CurrentState is AlertState)ChangeIndicatorColor(Color.yellow);
-        if(stateManager.CurrentState is ChaseState)ChangeIndicatorColor(Color.red);
+        base.Start();
+        SearchRadius = 10f;
+        SearchAngle = 90f;
+        _detector = new DetectorCone(this.transform, SearchRadius, SearchAngle);
+
+        _controller = new EnemyController(this, _detector, Agent, PathProvider.GetInstance().GetPathOrDefault(1))
+        {
+            DestinationReachedTolerance = 3f
+        };
+
     }
 
-    private void ChangeIndicatorColor(Color color)
+    protected override void Update()
     {
-        stateIndicator.material.color = color;
+        _controller.UpdateController();
+        _detector.DrawRangeIndicator();
     }
 
     public override void Wait(float duration)
     {
-        StartCoroutine(WaitRoutine(duration));
+        throw new System.NotImplementedException();
     }
 
-    private IEnumerator WaitRoutine(float duration)
+    public override void MoveTo(Transform destination)
     {
-        IsWaiting = true;
-        yield return new WaitForSeconds(duration);
-        IsWaiting = false;
+        Agent.SetDestination(destination.position);
+        Debug.Log("MoveTo called");
     }
 
-    public void TestInit()
+    public override void Kill(Transform[] targets)
     {
-        stateManager.PatrolState.SetToNewPathOrDefault(1);
-        stateManager.PatrolState.SetPatrolSpeed(5f);
-        SearchAngle = 90;
-        SearchRadius = 5;
+        foreach (var target in targets)
+        {
+            target.SendMessage("YouDeadTest");
+            Debug.Log("Pewpew. You take damage.");
+        }
     }
 }

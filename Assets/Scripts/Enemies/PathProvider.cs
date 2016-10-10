@@ -25,7 +25,7 @@ public class PathProvider : MonoBehaviour
     {
         Debug.Assert(_instance == null, "Shush. Don't make multiple instances of this, it's confusing.");
         _instance = this;
-        _defaultPath = defaultPath;
+        _defaultPath = defaultPath ?? new Transform[] {new GameObject().transform};
     }
 
     public static PathProvider GetInstance()
