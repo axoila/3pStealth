@@ -15,7 +15,8 @@ public class DetectorCone
         _detectorTransform = detectorTransform;
         _detectorRadius = detectorRadius;
         _detectorAngle = detectorAngle;
-        _obstacleMask=LayerMask.NameToLayer("Obstacle");
+        //_obstacleMask=LayerMask.NameToLayer("Obstacle");
+        _obstacleMask = 8;
     }
 
     public bool IsPlayerInRange()
@@ -41,17 +42,17 @@ public class DetectorCone
 
                 // TODO FIX THIS
                 //doesn't work, should work
-                //if (!Physics.Raycast(enemy.position, direction, distance, _obstacleMask))
-                //{
-                //    results.Add(player);
-                //}
-
-                RaycastHit hit;
-                Ray ray = new Ray(enemy.position, direction);
-                if (Physics.Raycast(ray, out hit, distance))
+                if (!Physics.Raycast(enemy.position, direction, distance, _obstacleMask))
                 {
-                    if(hit.collider.CompareTag("Player"))results.Add(player);
+                    results.Add(player);
                 }
+
+                //RaycastHit hit;
+                //Ray ray = new Ray(enemy.position, direction);
+                //if (Physics.Raycast(ray, out hit, distance))
+                //{
+                //    if(hit.collider.CompareTag("Player"))results.Add(player);
+                //}
             }
         }
 

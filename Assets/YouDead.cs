@@ -1,18 +1,18 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class YouDead : MonoBehaviour
 {
-    private MeshRenderer renderer;
+    private MeshRenderer _thisRenderer;
 
-    void Start()
+    private void Start()
     {
-        renderer = GetComponent<MeshRenderer>();
+        _thisRenderer = GetComponent<MeshRenderer>();
     }
 
-    void YouDeadTest()
+    private void YouDeadTest()
     {
-        renderer.material.color = Random.ColorHSV();
+        _thisRenderer.material.color = Random.ColorHSV();
     }
 }
