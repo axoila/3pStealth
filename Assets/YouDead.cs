@@ -5,6 +5,7 @@ using UnityEngine;
 public class YouDead : MonoBehaviour
 {
     private MeshRenderer _thisRenderer;
+    private float mult = 3;
 
     private void Start()
     {
@@ -13,6 +14,7 @@ public class YouDead : MonoBehaviour
 
     private void YouDeadTest()
     {
-        _thisRenderer.material.color = Random.ColorHSV();
+
+        _thisRenderer.material.color = new Color(Random.value* mult, Random.value * mult, Random.value * mult);
     }
 }
